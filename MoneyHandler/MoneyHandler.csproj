@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{34A61934-15F1-4DDE-B006-092FCD4E766E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MoneyHandler</RootNamespace>
+    <AssemblyName>MoneyHandler</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <DefineConstants Condition=" '$(TargetFrameworkVersion)' == 'v1.1' OR '$(TargetFrameworkVersion)' == 'v2.0' OR '$(TargetFrameworkVersion)' == 'v3.0' ">EXTENSION_METHODS_NOT_SUPPORTED</DefineConstants>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CsvHelper, Version=1.5.0.28472, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLLs\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CurrenciesFactorLoader\YahooCurrenciesFactorsLoader.cs" />
+    <Compile Include="CurrenciesFactorProvider\CurrenciesFactorsPer1Usd.cs" />
+    <Compile Include="CurrenciesFactorLoader\ICurrenciesFactorsLoader.cs" />
+    <Compile Include="CurrenciesFactorsUpdateStrategy\DefaultCurrenciesFactorsUpdateStrategy.cs" />
+    <Compile Include="CurrenciesFactorsUpdateStrategy\FakeLoadCurrenciesFactorsUpdateStrategy.cs" />
+    <Compile Include="CurrenciesFactorsUpdateStrategy\SingleLoadCurrenciesFactorsUpdateStrategy.cs" />
+    <Compile Include="Currency.cs" />
+    <Compile Include="CurrenciesFactorProvider\DefaultCurrenciesFactorProvider.cs" />
+    <Compile Include="CurrenciesFactorProvider\ICurrenciesFactorProvider.cs" />
+    <Compile Include="CurrenciesFactorsUpdateStrategy\ICurrenciesFactorsUpdateStrategy.cs" />
+    <Compile Include="CurrencyDescriptors\CurrencyDescriptor.cs" />
+    <Compile Include="Extensions\DecimalExtensions.cs" />
+    <Compile Include="Money.cs" />
+    <Compile Include="Extensions\MoneyExtensions.cs" />
+    <Compile Include="MoneyHandlerSettings.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DLLs\CsvHelper.dll" />
+    <None Include="DLLs\CsvHelper.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CurrencyDescriptors\Currencies.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
