@@ -1,8 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Runtime.Serialization;
 using System;
-using MoneyHandler;
-using MoneyHandler.CurrenciesFactorsUpdateStrategy;
+using MoneyHandler.CurrenciesFactorsUpdateStrategies;
 using MoneyHandler.Extensions;
 
 namespace MoneyHandler.Tests
@@ -551,7 +550,7 @@ namespace MoneyHandler.Tests
         /// <summary>
         ///A test for Money Constructor
         ///</summary>
-        [TestMethod()]
+        [TestMethod]
         [DeploymentItem("MoneyHandler.dll")]
         public void MoneyConstructorSerializationInfoTest()
         {

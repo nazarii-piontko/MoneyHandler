@@ -3,20 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MoneyHandler.CurrenciesFactorProvider
+namespace MoneyHandler.CurrenciesFactorProviders
 {
-    public class CurrenciesFactorsPer1Usd : IEnumerable<KeyValuePair<Currency, decimal>>, ICloneable
+    public class CurrenciesFactorsPer1UnitInUsd : IEnumerable<KeyValuePair<Currency, decimal>>, ICloneable
     {
         private readonly decimal[] _factors;
 
-        public CurrenciesFactorsPer1Usd()
+        public CurrenciesFactorsPer1UnitInUsd()
         {
             _factors = new decimal[Enum.GetValues(typeof (Currency)).Length];
             for (int i = 0; i < _factors.Length; ++i)
                 _factors[i] = 1m;
         }
 
-        private CurrenciesFactorsPer1Usd(decimal[] factors)
+        private CurrenciesFactorsPer1UnitInUsd(decimal[] factors)
         {
             _factors = factors;
         }
@@ -44,7 +44,13 @@ namespace MoneyHandler.CurrenciesFactorProvider
 
         public IEnumerator<KeyValuePair<Currency, decimal>> GetEnumerator()
         {
-            return _factors.Select((t, i) => new KeyValuePair<Currency, decimal>((Currency) i, t)).GetEnumerator();
+            for (int i = 0; i < _factors.Length; ++i)
+            {
+                if (i == (int) Currency.UNKNOWN || i == (int) Currency.USD)
+                    continue;
+
+                yield return new KeyValuePair<Currency, decimal>((Currency) i, _factors[i]);
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -54,7 +60,7 @@ namespace MoneyHandler.CurrenciesFactorProvider
 
         public object Clone()
         {
-            return new CurrenciesFactorsPer1Usd((decimal[]) _factors.Clone());
+            return new CurrenciesFactorsPer1UnitInUsd((decimal[]) _factors.Clone());
         }
     }
 }

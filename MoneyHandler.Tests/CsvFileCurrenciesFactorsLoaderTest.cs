@@ -1,14 +1,16 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MoneyHandler.CurrenciesFactorProviders;
+﻿using System;
+using MoneyHandler.CurrenciesFactorLoaders;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.IO;
 
 namespace MoneyHandler.Tests
 {
     /// <summary>
-    ///This is a test class for DefaultCurrenciesFactorProviderTest and is intended
-    ///to contain all DefaultCurrenciesFactorProviderTest Unit Tests
+    ///This is a test class for CsvFileCurrenciesFactorsLoaderTest and is intended
+    ///to contain all CsvFileCurrenciesFactorsLoaderTest Unit Tests
     ///</summary>
     [TestClass]
-    public class DefaultCurrenciesFactorProviderTest
+    public class CsvFileCurrenciesFactorsLoaderTest
     {
         /// <summary>
         ///Gets or sets the test context which provides
@@ -46,26 +48,26 @@ namespace MoneyHandler.Tests
         //
         #endregion
 
-
         /// <summary>
-        ///A test for GetFactor
+        ///A test for ParseFileData
         ///</summary>
         [TestMethod]
-        public void GetFactorTest()
+        [DeploymentItem("MoneyHandler.dll")]
+        public void ParseFileDataTest()
         {
-            var factorsPer1Usd = new CurrenciesFactorsPer1UnitInUsd();
+            TextReader fileReader = new StringReader(
+                "CURRENCY,FACTOR" + Environment.NewLine +
+                "EUR,1.4" + Environment.NewLine +
+                "AUD,1.5\r\n" + Environment.NewLine +
+                "JPY,2\n" + Environment.NewLine +
+                "UAH,0.2");
 
-            factorsPer1Usd[Currency.EUR] = 1.4m;
-            factorsPer1Usd[Currency.JPY] = 2.8m;
+            var actual = CsvFileCurrenciesFactorsLoader_Accessor.ParseFileData(fileReader);
 
-            var target = new DefaultCurrenciesFactorProvider(factorsPer1Usd);
-
-            Assert.AreEqual(0.5m, target.GetFactor(Currency.EUR, Currency.JPY));
-            Assert.AreEqual(2m, target.GetFactor(Currency.JPY, Currency.EUR));
-            Assert.AreEqual(1m/2.8m, target.GetFactor(Currency.USD, Currency.JPY));
-            Assert.AreEqual(1m, target.GetFactor(Currency.USD, Currency.USD));
-            Assert.AreEqual(1m, target.GetFactor(Currency.JPY, Currency.JPY));
-            Assert.AreEqual(1m, target.GetFactor(Currency.USD, Currency.UNKNOWN));
+            Assert.AreEqual(1.4m, actual[Currency.EUR]);
+            Assert.AreEqual(1.5m, actual[Currency.AUD]);
+            Assert.AreEqual(2, actual[Currency.JPY]);
+            Assert.AreEqual(0.2m, actual[Currency.UAH]);
         }
     }
 }

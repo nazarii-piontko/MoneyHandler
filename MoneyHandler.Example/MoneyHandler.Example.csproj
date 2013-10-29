@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MoneyHandler.Example</RootNamespace>
     <AssemblyName>MoneyHandler.Example</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -74,13 +74,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MoneyHandler\MoneyHandler.csproj">
-      <Project>{34A61934-15F1-4DDE-B006-092FCD4E766E}</Project>
-      <Name>MoneyHandler</Name>
-    </ProjectReference>
+    <None Include="app.config" />
+    <None Include="currencies.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <ProjectReference Include="..\MoneyHandler.NET4\MoneyHandler.NET4.csproj">
+      <Project>{6B1D7B73-031F-4B00-A7A4-C82B2D53CB5B}</Project>
+      <Name>MoneyHandler.NET4</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

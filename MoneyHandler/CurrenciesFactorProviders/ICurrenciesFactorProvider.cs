@@ -1,4 +1,4 @@
-namespace MoneyHandler.CurrenciesFactorProvider
+namespace MoneyHandler.CurrenciesFactorProviders
 {
     /// <summary>
     /// Provide currencies factor that allow convert one currency to another.

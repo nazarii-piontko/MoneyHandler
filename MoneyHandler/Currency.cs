@@ -8,6 +8,7 @@ namespace MoneyHandler
         /// <summary>
         /// UNKNOWN currency
         /// </summary>
+// ReSharper disable InconsistentNaming
         UNKNOWN = 0,
         USD,
         EUR,
@@ -198,5 +199,6 @@ namespace MoneyHandler
         ZMK,
         ZWL,
         ZWR
+// ReSharper restore InconsistentNaming
     }
 }

@@ -1,5 +1,3 @@
-#if !EXTENSION_METHODS_NOT_SUPPORTED
-
 namespace MoneyHandler.Extensions
 {
     public static class DecimalExtensions
@@ -75,7 +73,13 @@ namespace MoneyHandler.Extensions
         {
             return new Money(amount, Currency.UAH);
         }
+
+        /// <summary>
+        /// Set currency
+        /// </summary>
+        public static Money Crs(this decimal amount, Currency currency)
+        {
+            return new Money(amount, currency);
+        }
     }
 }
-
-#endif

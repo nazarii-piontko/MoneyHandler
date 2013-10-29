@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access" MembersFormat="FullSignature">
+  <Class Name="MoneyHandler.CurrenciesFactorLoaders.CachableCurrenciesFactorsLoader" Collapsed="true">
+    <Position X="14.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACEAAAAAgAAEgEAAQAAAAAAAQABAABAAAIA=</HashCode>
+      <FileName>CurrenciesFactorLoaders\CachableCurrenciesFactorsLoader.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MoneyHandler.CurrenciesFactorLoaders.CsvFileCurrenciesFactorsLoader" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAACAAACAAAAAAgAAGgIAAAAAAAAAAAABAABAAAAA=</HashCode>
+      <FileName>CurrenciesFactorLoaders\CsvFileCurrenciesFactorsLoader.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MoneyHandler.CurrenciesFactorLoaders.FileCachableCurrenciesFactorsLoader" Collapsed="true">
+    <Position X="14.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CurrenciesFactorLoaders\FileCachableCurrenciesFactorsLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MoneyHandler.CurrenciesFactorLoaders.CurrenciesFactorsLoaderCalbackState" Collapsed="true">
+    <Position X="6.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAQAIAAAAAAAAAAAAIAAAAAAAoAAAAAA=</HashCode>
+      <FileName>CurrenciesFactorLoaders\ICurrenciesFactorsLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MoneyHandler.CurrenciesFactorLoaders.YahooCurrenciesFactorsLoader" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="3" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAACEAgEAAgAgAgIAAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>CurrenciesFactorLoaders\YahooCurrenciesFactorsLoader.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MoneyHandler.CurrenciesFactorProviders.CurrenciesFactorsPer1UnitInUsd" BaseTypeListCollapsed="true">
+    <Position X="10" Y="2.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAACAAAAAQAAAAAAAAEAAAAgAAAABA=</HashCode>
+      <FileName>CurrenciesFactorProviders\CurrenciesFactorsPer1UnitInUsd.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MoneyHandler.CurrenciesFactorProviders.DefaultCurrenciesFactorProvider" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAgAAAAAg=</HashCode>
+      <FileName>CurrenciesFactorProviders\DefaultCurrenciesFactorProvider.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MoneyHandler.CurrenciesFactorsUpdateStrategies.CsvFileCurrenciesFactorsUpdateStrategy" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQEAAAAACAAAAACQBABSAAAAAAAAAAAAAABCAAgAAg=</HashCode>
+      <FileName>CurrenciesFactorsUpdateStrategies\CsvFileCurrenciesFactorsUpdateStrategy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MoneyHandler.CurrenciesFactorsUpdateStrategies.CurrencyFactorsLoadedEventArgs" Collapsed="true">
+    <Position X="3" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CurrenciesFactorsUpdateStrategies\CurrencyFactorsLoadedEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MoneyHandler.CurrenciesFactorsUpdateStrategies.CurrencyFactorsLoadingErrorEventArgs" Collapsed="true">
+    <Position X="4.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAgAAAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CurrenciesFactorsUpdateStrategies\CurrencyFactorsLoadingErrorEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MoneyHandler.CurrenciesFactorsUpdateStrategies.DefaultCurrenciesFactorsUpdateStrategy" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAACAgAAAGABAhAgCAAAAAAgABBAABAgAmAAA=</HashCode>
+      <FileName>CurrenciesFactorsUpdateStrategies\DefaultCurrenciesFactorsUpdateStrategy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="MoneyHandler.CurrenciesFactorsUpdateStrategies.SingleLoadCurrenciesFactorsUpdateStrategy" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAABABAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>CurrenciesFactorsUpdateStrategies\SingleLoadCurrenciesFactorsUpdateStrategy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="MoneyHandler.ExceptionEventArgs" Collapsed="true">
+    <Position X="5.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ExceptionEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MoneyHandler.MoneyHandlerSettings">
+    <Position X="2.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAASAAAAAAAEAEAAAADAAAAAAAAAAQggCAAAQAAA=</HashCode>
+      <FileName>MoneyHandlerSettings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MoneyHandler.CurrencyDescriptors.CurrencyDescriptor" Collapsed="true">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACwAAAIAAAAwAAQIAAQAgACECAFEAAAAAACAQACIA=</HashCode>
+      <FileName>CurrencyDescriptors\CurrencyDescriptor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MoneyHandler.Extensions.DecimalExtensions">
+    <Position X="9.75" Y="7.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAACAAAAgAAAQAACIAAAAACIAAAUAAAAAA=</HashCode>
+      <FileName>Extensions\DecimalExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MoneyHandler.Extensions.MoneyExtensions">
+    <Position X="7.25" Y="7.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>BAACAgAAAAAABAAAAQAAAAhAAAAAAAAAAAIAAQAAAAA=</HashCode>
+      <FileName>Extensions\MoneyExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MoneyHandler.Properties.Resources" Collapsed="true">
+    <Position X="5.25" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAEAAAAAAAABAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MoneyHandler.CurrenciesFactorLoaders.FileCachableCurrenciesFactorsLoaderBase" Collapsed="true">
+    <Position X="14.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACACAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CurrenciesFactorLoaders\FileCachableCurrenciesFactorsLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="MoneyHandler.Money" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAgAcKEAAAANRUE4BeDAkOACgyAAIhAgABIAAABNzA=</HashCode>
+      <FileName>Money.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Struct>
+  <Interface Name="MoneyHandler.CurrenciesFactorLoaders.ICurrenciesFactorsLoader">
+    <Position X="5.25" Y="3.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAgAAAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>CurrenciesFactorLoaders\ICurrenciesFactorsLoader.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MoneyHandler.CurrenciesFactorProviders.ICurrenciesFactorProvider">
+    <Position X="2.75" Y="3.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAA=</HashCode>
+      <FileName>CurrenciesFactorProviders\ICurrenciesFactorProvider.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="MoneyHandler.CurrenciesFactorsUpdateStrategies.ICurrenciesFactorsUpdateStrategy">
+    <Position X="7.75" Y="3.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CurrenciesFactorsUpdateStrategies\ICurrenciesFactorsUpdateStrategy.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="MoneyHandler.Currency">
+    <Position X="0.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>Pa7m9fugTHe/03gQiJX95pKA8fv/fwQAsMM9CIFA8G4=</HashCode>
+      <FileName>Currency.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Delegate Name="MoneyHandler.CurrenciesFactorLoaders.CurrenciesFactorsLoaderCallback" Collapsed="true">
+    <Position X="5.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CurrenciesFactorLoaders\ICurrenciesFactorsLoader.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

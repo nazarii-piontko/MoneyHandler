@@ -1,46 +1,39 @@
 using System;
 using System.Timers;
-using MoneyHandler.CurrenciesFactorLoader;
-using MoneyHandler.CurrenciesFactorProvider;
+using MoneyHandler.CurrenciesFactorLoaders;
+using MoneyHandler.CurrenciesFactorProviders;
 
-namespace MoneyHandler.CurrenciesFactorsUpdateStrategy
+namespace MoneyHandler.CurrenciesFactorsUpdateStrategies
 {
-    public class DefaultCurrenciesFactorsUpdateStrategy : ICurrenciesFactorsUpdateStrategy
+    public sealed class DefaultCurrenciesFactorsUpdateStrategy : ICurrenciesFactorsUpdateStrategy
     {
-        public const int MinTimerTimeout = 100;
+        public delegate int TimerScheduleCallback(bool isPreviousLoadSuccessful);
 
         private readonly ICurrenciesFactorsLoader _factorsLoader;
+        private readonly TimerScheduleCallback _scheduleCallback;
+
         private DefaultCurrenciesFactorProvider _factorsProvider;
-
-        private int _updateTimeout = 12 * 3600 * 100;//default value every 12 hours
-        private Timer _timer = null;
-
-        private bool _isDisposed = false;
+        private readonly Timer _timer = new Timer();
+        private bool _isDisposed;
 
         public event EventHandler<CurrencyFactorsLoadingErrorEventArgs> FactorsLoadingError;
         public event EventHandler<CurrencyFactorsLoadedEventArgs> FactorsLoaded;
 
-        public DefaultCurrenciesFactorsUpdateStrategy(ICurrenciesFactorsLoader factorsLoader)
+        public DefaultCurrenciesFactorsUpdateStrategy(ICurrenciesFactorsLoader factorsLoader
+            , TimerScheduleCallback scheduleCallback)
         {
             if (factorsLoader == null)
                 throw new ArgumentNullException("factorsLoader");
+            if (scheduleCallback == null)
+                throw new ArgumentNullException("scheduleCallback");
 
             _factorsLoader = factorsLoader;
+            _scheduleCallback = scheduleCallback;
         }
 
-        public int UpdateTimeout
+        ~DefaultCurrenciesFactorsUpdateStrategy()
         {
-            get { return _updateTimeout; }
-            set
-            {
-                if (_updateTimeout == value)
-                    return;
-                if (_isDisposed)
-                    return;
-
-                _timer.Interval = _updateTimeout;
-                _updateTimeout = value;
-            }
+            Dispose(false);
         }
 
         public ICurrenciesFactorProvider CreateAndInitProvider()
@@ -56,24 +49,38 @@ namespace MoneyHandler.CurrenciesFactorsUpdateStrategy
             return _factorsProvider;
         }
 
+        public void ForceUpdate()
+        {
+            _timer.Enabled = false;
+            UpdateFactorsAsync();
+        }
+
         public void Dispose()
+        {
+            Dispose(true);
+        }
+
+        private void Dispose(bool disposing)
         {
             if (_isDisposed)
                 return;
 
-            if (_timer != null)
+            _isDisposed = true;
+
+            if (disposing)
             {
                 try { _timer.Stop(); }
-                catch { }
+                catch { } 
                 _timer.Dispose();
-                _timer = null;
+
+                GC.SuppressFinalize(this);
             }
 
-            try { _factorsLoader.CancelAsync(); }
-            catch { }
+            try
+            { _factorsLoader.CancelAsync(); }
+            catch
+            { }
             _factorsLoader.Dispose();
-
-            _isDisposed = true;
         }
 
         private void UpdateFactorsSync()
@@ -92,10 +99,7 @@ namespace MoneyHandler.CurrenciesFactorsUpdateStrategy
 
         private void InitTimer()
         {
-            if (_timer != null)
-                return;
-
-            _timer = new Timer {AutoReset = true};
+            _timer.AutoReset = true;
             _timer.Elapsed += OnTimerElapsed;
         }
 
@@ -139,12 +143,13 @@ namespace MoneyHandler.CurrenciesFactorsUpdateStrategy
 
         private void HandleUpdateFactorsLoaded()
         {
-            var args = new CurrencyFactorsLoadedEventArgs(_updateTimeout);
+            var args = new CurrencyFactorsLoadedEventArgs(_scheduleCallback(true));
 
             try
             {
-                if (FactorsLoaded != null)
-                    FactorsLoaded(this, args);
+                var factorsLoaded = FactorsLoaded;
+                if (factorsLoaded != null)
+                    factorsLoaded(this, args);
             }
             finally
             {
@@ -154,12 +159,13 @@ namespace MoneyHandler.CurrenciesFactorsUpdateStrategy
 
         private void HandleUpdateFactorsError(Exception ex)
         {
-            var args = new CurrencyFactorsLoadingErrorEventArgs(ex, _updateTimeout);
+            var args = new CurrencyFactorsLoadingErrorEventArgs(ex, _scheduleCallback(false));
 
             try
             {
-                if (FactorsLoadingError != null)
-                    FactorsLoadingError(this, args);
+                var factorsLoadingError = FactorsLoadingError;
+                if (factorsLoadingError != null)
+                    factorsLoadingError(this, args);
             }
             finally
             {
@@ -169,7 +175,9 @@ namespace MoneyHandler.CurrenciesFactorsUpdateStrategy
 
         private void StartTimer(int timeout)
         {
-            _timer.Interval = Math.Max(timeout, MinTimerTimeout);
+            const int minTimerTimeout = 100;
+
+            _timer.Interval = Math.Max(timeout, minTimerTimeout);
             _timer.Start();
         }
 
@@ -177,34 +185,6 @@ namespace MoneyHandler.CurrenciesFactorsUpdateStrategy
         {
             if (_isDisposed)
                 throw new ObjectDisposedException("DefaultCurrenciesFactorsUpdateStrategy");
-        }
-    }
-
-    public class CurrencyFactorsLoadedEventArgs : EventArgs
-    {
-        public CurrencyFactorsLoadedEventArgs(int reloadFactorsTimeout)
-        {
-            ReloadFactorsTimeout = reloadFactorsTimeout;
-        }
-
-        public int ReloadFactorsTimeout { get; set; }
-    }
-
-    public class CurrencyFactorsLoadingErrorEventArgs : EventArgs
-    {
-        private readonly Exception _error;
-
-        public CurrencyFactorsLoadingErrorEventArgs(Exception error, int reloadFactorsTimeout)
-        {
-            _error = error;
-            ReloadFactorsTimeout = reloadFactorsTimeout;
-        }
-
-        public int ReloadFactorsTimeout { get; set; }
-
-        public Exception Error
-        {
-            get { return _error; }
         }
     }
 }

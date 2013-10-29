@@ -1,8 +1,8 @@
 using System;
 using System.Threading;
-using MoneyHandler.CurrenciesFactorLoader;
-using MoneyHandler.CurrenciesFactorProvider;
-using MoneyHandler.CurrenciesFactorsUpdateStrategy;
+using MoneyHandler.CurrenciesFactorLoaders;
+using MoneyHandler.CurrenciesFactorProviders;
+using MoneyHandler.CurrenciesFactorsUpdateStrategies;
 
 namespace MoneyHandler
 {
@@ -10,20 +10,35 @@ namespace MoneyHandler
     {
         #region Static
 
+        private static readonly object StaticInstanceLocker = new object();
         private static MoneyHandlerSettings _staticInstance;
 
+        /// <summary>
+        /// Initialize money handler settings singelton stuff.
+        /// 
+        /// Default configuration is:
+        /// new MoneyHandlerSettings(new DefaultCurrenciesFactorsUpdateStrategy(new YahooCurrenciesFactorsLoader(), isPreviousLoadSuccessful => isPreviousLoadSuccessful ? (6*60*60*1000) : 60*1000), Currency.USD);
+        /// </summary>
         public static void Init(MoneyHandlerSettings settings)
         {
             if (settings == null)
                 throw new ArgumentNullException("settings");
 
-            if (_staticInstance == settings)
-                return;
+            lock (StaticInstanceLocker)
+            {
+                if (_staticInstance == settings)
+                    return;
 
-            if (_staticInstance != null)
-                _staticInstance.FactorsUpdateStrategy.Dispose();
+                if (_staticInstance != null)
+                    _staticInstance.FactorsUpdateStrategy.Dispose();
 
-            _staticInstance = settings;
+                _staticInstance = settings;
+            }
+        }
+
+        public static void InitDefault()
+        {
+            Init(CreateDefaultSettings());
         }
 
         public static MoneyHandlerSettings Instance
@@ -32,17 +47,29 @@ namespace MoneyHandler
             {
                 if (_staticInstance == null)
                 {
-                    MoneyHandlerSettings settings = CreateDefaultSettings();
+                    lock (StaticInstanceLocker)
+                    {
+                        if (Interlocked.CompareExchange(ref _staticInstance, null, null) == null)
+                        {
+                            var settings = CreateDefaultSettings();
 
-                    Interlocked.CompareExchange(ref _staticInstance, settings, null);
+                            _staticInstance = settings;
+                        }
+                    }
                 }
+
                 return _staticInstance;
             }
         }
 
         private static MoneyHandlerSettings CreateDefaultSettings()
         {
-            return new MoneyHandlerSettings(new DefaultCurrenciesFactorsUpdateStrategy(new YahooCurrenciesFactorsLoader()), Currency.USD);
+            return
+                new MoneyHandlerSettings(
+                    new DefaultCurrenciesFactorsUpdateStrategy(new YahooCurrenciesFactorsLoader(),
+                                                               isPreviousLoadSuccessful =>
+                                                               isPreviousLoadSuccessful ? (6*60*60*1000) : 60*1000),
+                    Currency.USD);
         }
 
         #endregion
@@ -65,10 +92,6 @@ namespace MoneyHandler
         {
             get { return _defaultCurrency; }
         }
-
-        public MoneyHandlerSettings(ICurrenciesFactorsUpdateStrategy factorsUpdateStrategy)
-            : this(factorsUpdateStrategy, Currency.USD)
-        { }
 
         public MoneyHandlerSettings(ICurrenciesFactorsUpdateStrategy factorsUpdateStrategy, Currency defaultCurrency)
         {

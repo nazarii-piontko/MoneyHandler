@@ -50,9 +50,12 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CachableCurrenciesFactorsLoaderTest.cs" />
+    <Compile Include="CsvFileCurrenciesFactorsLoaderTest.cs" />
     <Compile Include="CurrenciesFactorsPer1UsdTest.cs" />
     <Compile Include="CurrencyDescriptorTest.cs" />
     <Compile Include="DefaultCurrenciesFactorProviderTest.cs" />
+    <Compile Include="MoneyConvertionTest.cs" />
     <Compile Include="MoneyTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

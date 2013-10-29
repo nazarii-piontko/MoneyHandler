@@ -1,5 +1,3 @@
-#if !EXTENSION_METHODS_NOT_SUPPORTED
-
 namespace MoneyHandler.Extensions
 {
     public static class MoneyExtensions
@@ -77,5 +75,3 @@ namespace MoneyHandler.Extensions
         }
     }
 }
-
-#endif

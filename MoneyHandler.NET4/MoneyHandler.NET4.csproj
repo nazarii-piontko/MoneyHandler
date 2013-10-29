@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6B1D7B73-031F-4B00-A7A4-C82B2D53CB5B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MoneyHandler</RootNamespace>
+    <AssemblyName>MoneyHandler</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CsvHelper">
+      <HintPath>..\MoneyHandler\DLLs\CsvHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Compile Include="..\MoneyHandler\CurrenciesFactorLoaders\CachableCurrenciesFactorsLoader.cs">
+      <Link>CurrenciesFactorLoaders\CachableCurrenciesFactorsLoader.cs</Link>
+    </Compile>
+    <Compile Include="..\MoneyHandler\CurrenciesFactorLoaders\CsvFileCurrenciesFactorsLoader.cs">
+      <Link>CurrenciesFactorLoaders\CsvFileCurrenciesFactorsLoader.cs</Link>
+    </Compile>
+    <Compile Include="..\MoneyHandler\CurrenciesFactorLoaders\FakeCurrenciesFactorsLoader.cs">
+      <Link>CurrenciesFactorLoaders\FakeCurrenciesFactorsLoader.cs</Link>
+    </Compile>
+    <Compile Include="..\MoneyHandler\CurrenciesFactorLoaders\FileCachableCurrenciesFactorsLoader.cs">
+      <Link>CurrenciesFactorLoaders\FileCachableCurrenciesFactorsLoader.cs</Link>
+    </Compile>
+    <Compile Include="..\MoneyHandler\CurrenciesFactorLoaders\ICurrenciesFactorsLoader.cs">
+      <Link>CurrenciesFactorLoaders\ICurrenciesFactorsLoader.cs</Link>
+    </Compile>
+    <Compile Include="..\MoneyHandler\CurrenciesFactorLoaders\YahooCurrenciesFactorsLoader.cs">
+      <Link>CurrenciesFactorLoaders\YahooCurrenciesFactorsLoader.cs</Link>
+    </Compile>
+    <Compile Include="..\MoneyHandler\CurrenciesFactorProviders\CurrenciesFactorsPer1UnitInUsd.cs">
+      <Link>CurrenciesFactorProviders\CurrenciesFactorsPer1UnitInUsd.cs</Link>
+    </Compile>
+    <Compile Include="..\MoneyHandler\CurrenciesFactorProviders\DefaultCurrenciesFactorProvider.cs">
+      <Link>CurrenciesFactorProviders\DefaultCurrenciesFactorProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\MoneyHandler\CurrenciesFactorProviders\ICurrenciesFactorProvider.cs">
+      <Link>CurrenciesFactorProviders\ICurrenciesFactorProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\MoneyHandler\CurrenciesFactorsUpdateStrategies\CsvFileCurrenciesFactorsUpdateStrategy.cs">
+      <Link>CurrenciesFactorsUpdateStrategies\CsvFileCurrenciesFactorsUpdateStrategy.cs</Link>
+    </Compile>
+    <Compile Include="..\MoneyHandler\CurrenciesFactorsUpdateStrategies\CurrencyFactorsLoadedEventArgs.cs">
+      <Link>CurrenciesFactorsUpdateStrategies\CurrencyFactorsLoadedEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\MoneyHandler\CurrenciesFactorsUpdateStrategies\CurrencyFactorsLoadingErrorEventArgs.cs">
+      <Link>CurrenciesFactorsUpdateStrategies\CurrencyFactorsLoadingErrorEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\MoneyHandler\CurrenciesFactorsUpdateStrategies\DefaultCurrenciesFactorsUpdateStrategy.cs">
+      <Link>CurrenciesFactorsUpdateStrategies\DefaultCurrenciesFactorsUpdateStrategy.cs</Link>
+    </Compile>
+    <Compile Include="..\MoneyHandler\CurrenciesFactorsUpdateStrategies\FakeLoadCurrenciesFactorsUpdateStrategy.cs">
+      <Link>CurrenciesFactorsUpdateStrategies\FakeLoadCurrenciesFactorsUpdateStrategy.cs</Link>
+    </Compile>
+    <Compile Include="..\MoneyHandler\CurrenciesFactorsUpdateStrategies\ICurrenciesFactorsUpdateStrategy.cs">
+      <Link>CurrenciesFactorsUpdateStrategies\ICurrenciesFactorsUpdateStrategy.cs</Link>
+    </Compile>
+    <Compile Include="..\MoneyHandler\CurrenciesFactorsUpdateStrategies\SingleLoadCurrenciesFactorsUpdateStrategy.cs">
+      <Link>CurrenciesFactorsUpdateStrategies\SingleLoadCurrenciesFactorsUpdateStrategy.cs</Link>
+    </Compile>
+    <Compile Include="..\MoneyHandler\Currency.cs">
+      <Link>Currency.cs</Link>
+    </Compile>
+    <Compile Include="..\MoneyHandler\CurrencyDescriptors\CurrencyDescriptor.cs">
+      <Link>CurrencyDescriptors\CurrencyDescriptor.cs</Link>
+    </Compile>
+    <Compile Include="..\MoneyHandler\ExceptionEventArgs.cs">
+      <Link>ExceptionEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\MoneyHandler\Extensions\DecimalExtensions.cs">
+      <Link>Extensions\DecimalExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\MoneyHandler\Extensions\MoneyExtensions.cs">
+      <Link>Extensions\MoneyExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\MoneyHandler\Money.cs">
+      <Link>Money.cs</Link>
+    </Compile>
+    <Compile Include="..\MoneyHandler\MoneyHandlerSettings.cs">
+      <Link>MoneyHandlerSettings.cs</Link>
+    </Compile>
+    <Compile Include="..\MoneyHandler\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\MoneyHandler\Properties\Resources.Designer.cs">
+      <Link>Properties\Resources.Designer.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\MoneyHandler\Properties\Resources.resx">
+      <Link>Properties\Resources.resx</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\MoneyHandler\CurrencyDescriptors\Currencies.xml">
+      <Link>CurrencyDescriptors\Currencies.xml</Link>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

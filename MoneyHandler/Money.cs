@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Globalization;
 using System.Linq;
-using System.Runtime;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
+using System.Security.Permissions;
 using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
-using MoneyHandler.CurrenciesFactorProvider;
+using MoneyHandler.CurrenciesFactorProviders;
 using MoneyHandler.CurrencyDescriptors;
+using MoneyHandler.Properties;
 
 namespace MoneyHandler
 {
@@ -535,6 +536,7 @@ namespace MoneyHandler
         /// Populates a <see cref="T:System.Runtime.Serialization.SerializationInfo"/> with the data needed to serialize the target object.
         /// </summary>
         /// <param name="info">The <see cref="T:System.Runtime.Serialization.SerializationInfo"/> to populate with data. </param><param name="context">The destination (see <see cref="T:System.Runtime.Serialization.StreamingContext"/>) for this serialization. </param><exception cref="T:System.Security.SecurityException">The caller does not have the required permission. </exception>
+        [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
         void ISerializable.GetObjectData(SerializationInfo info, StreamingContext context)
         {
             info.AddValue(AmountName, _amount);
@@ -702,6 +704,11 @@ namespace MoneyHandler
             return new Money((decimal) l);
         }
 
+        public static explicit operator Money(string str)
+        {
+            return Parse(str);
+        }
+
         public static Money operator +(Money l, Money r)
         {
             r = CorrectCurrencyIfNeed(l._currency, r);
@@ -859,7 +866,7 @@ namespace MoneyHandler
             if (!TryParsePrivate(s, provider, out money, out ex))
             {
                 if (ex == null)
-                    ex = new ArgumentException("Unknown parse error", "s");
+                    ex = new ArgumentException(Resources.Str_Money_UnknownParseError, "s");
                 throw ex;
             }
             return money;
@@ -950,7 +957,7 @@ namespace MoneyHandler
 
         private static void ThrowInvalidArgumentTypeException(string paramName)
         {
-            throw new ArgumentException("Argument must be of type 'MoneyHandler.Money'", paramName);
+            throw new ArgumentException(Resources.Str_Money_ThrowInvalidArgumentTypeException, paramName);
         }
 
         private static Money CorrectCurrencyIfNeed(Currency baseCurrency, Money other)

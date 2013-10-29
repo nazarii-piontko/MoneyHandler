@@ -1,11 +1,11 @@
 using System;
-using MoneyHandler.CurrenciesFactorProvider;
+using MoneyHandler.CurrenciesFactorProviders;
 
-namespace MoneyHandler.CurrenciesFactorLoader
+namespace MoneyHandler.CurrenciesFactorLoaders
 {
     public interface ICurrenciesFactorsLoader : IDisposable
     {
-        CurrenciesFactorsPer1Usd LoadCurrenciesFactors();
+        CurrenciesFactorsPer1UnitInUsd LoadCurrenciesFactors();
 
         void LoadCurrenciesFactorsAsync(CurrenciesFactorsLoaderCallback callback);
         void CancelAsync();
@@ -15,11 +15,11 @@ namespace MoneyHandler.CurrenciesFactorLoader
 
     public class CurrenciesFactorsLoaderCalbackState
     {
-        private readonly CurrenciesFactorsPer1Usd _factors;
+        private readonly CurrenciesFactorsPer1UnitInUsd _factors;
         private readonly Exception _error;
         private readonly bool _isCancelled;
 
-        public CurrenciesFactorsLoaderCalbackState(CurrenciesFactorsPer1Usd factors, Exception error, bool isCancelled)
+        public CurrenciesFactorsLoaderCalbackState(CurrenciesFactorsPer1UnitInUsd factors, Exception error, bool isCancelled)
         {
             _factors = factors;
             _error = error;
@@ -36,7 +36,7 @@ namespace MoneyHandler.CurrenciesFactorLoader
             get { return _error; }
         }
 
-        public CurrenciesFactorsPer1Usd Factors
+        public CurrenciesFactorsPer1UnitInUsd Factors
         {
             get { return _factors; }
         }

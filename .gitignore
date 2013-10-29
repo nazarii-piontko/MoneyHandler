@@ -116,3 +116,7 @@ UpgradeLog*.XML
 .hgignore
 
 >>>>>>> d891f7ff8949231aeaa3c4d3ce5ba4aceb347339
+
+/MoneyHandler.Example/*.orig
+
+*.orig

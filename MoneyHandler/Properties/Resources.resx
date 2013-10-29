@@ -121,4 +121,10 @@
   <data name="Currencies" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\CurrencyDescriptors\Currencies.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="Str_Money_UnknownParseError">
+    <value xml:space="preserve">Unknown parse error</value>
+  </data>
+  <data name="Str_Money_ThrowInvalidArgumentTypeException">
+    <value xml:space="preserve">Argument must be of type 'MoneyHandler.Money'</value>
+  </data>
 </root>

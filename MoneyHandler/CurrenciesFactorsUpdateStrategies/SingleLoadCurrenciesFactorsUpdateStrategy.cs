@@ -1,8 +1,8 @@
 using System;
-using MoneyHandler.CurrenciesFactorLoader;
-using MoneyHandler.CurrenciesFactorProvider;
+using MoneyHandler.CurrenciesFactorLoaders;
+using MoneyHandler.CurrenciesFactorProviders;
 
-namespace MoneyHandler.CurrenciesFactorsUpdateStrategy
+namespace MoneyHandler.CurrenciesFactorsUpdateStrategies
 {
     public class SingleLoadCurrenciesFactorsUpdateStrategy : ICurrenciesFactorsUpdateStrategy
     {
@@ -17,19 +17,36 @@ namespace MoneyHandler.CurrenciesFactorsUpdateStrategy
             _factorsLoader = factorsLoader;
         }
 
+        ~SingleLoadCurrenciesFactorsUpdateStrategy()
+        {
+            Dispose(false);
+        }
+
         public ICurrenciesFactorProvider CreateAndInitProvider()
+        {
+            ForceUpdate();
+
+            return _factorsProvider;
+        }
+
+        public void ForceUpdate()
         {
             if (_factorsProvider == null)
                 _factorsProvider = new DefaultCurrenciesFactorProvider();
 
             _factorsProvider.UpdateFactors(_factorsLoader.LoadCurrenciesFactors());
-
-            return _factorsProvider;
         }
 
         public void Dispose()
         {
+            Dispose(true);
+        }
+
+        private void Dispose(bool disposing)
+        {
             _factorsLoader.Dispose();
+            if (disposing)
+                GC.SuppressFinalize(this);
         }
     }
 }

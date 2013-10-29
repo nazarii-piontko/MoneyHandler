@@ -1,6 +1,6 @@
-﻿using MoneyHandler.CurrenciesFactorProvider;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using MoneyHandler.CurrenciesFactorProviders;
 
 namespace MoneyHandler.Tests
 {
@@ -49,12 +49,12 @@ namespace MoneyHandler.Tests
 
 
         /// <summary>
-        ///A test for CurrenciesFactorsPer1Usd Constructor
+        ///A test for CurrenciesFactorsPer1UnitInUsd Constructor
         ///</summary>
         [TestMethod]
         public void CurrenciesFactorsPer1UsdConstructorTest()
         {
-            var target = new CurrenciesFactorsPer1Usd();
+            var target = new CurrenciesFactorsPer1UnitInUsd();
 
             Assert.AreEqual(target[Currency.UNKNOWN], 1m);
             Assert.AreEqual(target[Currency.USD], 1m);
@@ -68,12 +68,12 @@ namespace MoneyHandler.Tests
         [TestMethod]
         public void CloneTest()
         {
-            var target = new CurrenciesFactorsPer1Usd();
+            var target = new CurrenciesFactorsPer1UnitInUsd();
 
             target[Currency.EUR] = 1.4m;
             target[Currency.JPY] = 2m;
 
-            var actual = (CurrenciesFactorsPer1Usd) target.Clone();
+            var actual = (CurrenciesFactorsPer1UnitInUsd) target.Clone();
 
             Assert.AreEqual(target[Currency.EUR], actual[Currency.EUR]);
             Assert.AreEqual(target[Currency.JPY], actual[Currency.JPY]);
@@ -85,7 +85,7 @@ namespace MoneyHandler.Tests
         [TestMethod]
         public void CountTest()
         {
-            var target = new CurrenciesFactorsPer1Usd();
+            var target = new CurrenciesFactorsPer1UnitInUsd();
 
             Assert.AreEqual(target.Count, Enum.GetValues(typeof (Currency)).Length);
         }
@@ -96,7 +96,7 @@ namespace MoneyHandler.Tests
         [TestMethod]
         public void ItemTest()
         {
-            var target = new CurrenciesFactorsPer1Usd();
+            var target = new CurrenciesFactorsPer1UnitInUsd();
 
             target[Currency.EUR] = 1.4m;
 

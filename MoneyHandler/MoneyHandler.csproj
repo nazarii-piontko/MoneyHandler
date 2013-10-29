@@ -43,16 +43,24 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CurrenciesFactorLoader\YahooCurrenciesFactorsLoader.cs" />
-    <Compile Include="CurrenciesFactorProvider\CurrenciesFactorsPer1Usd.cs" />
-    <Compile Include="CurrenciesFactorLoader\ICurrenciesFactorsLoader.cs" />
-    <Compile Include="CurrenciesFactorsUpdateStrategy\DefaultCurrenciesFactorsUpdateStrategy.cs" />
-    <Compile Include="CurrenciesFactorsUpdateStrategy\FakeLoadCurrenciesFactorsUpdateStrategy.cs" />
-    <Compile Include="CurrenciesFactorsUpdateStrategy\SingleLoadCurrenciesFactorsUpdateStrategy.cs" />
+    <Compile Include="CurrenciesFactorLoaders\CachableCurrenciesFactorsLoader.cs" />
+    <Compile Include="CurrenciesFactorLoaders\CsvFileCurrenciesFactorsLoader.cs" />
+    <Compile Include="CurrenciesFactorLoaders\FakeCurrenciesFactorsLoader.cs" />
+    <Compile Include="ExceptionEventArgs.cs" />
+    <Compile Include="CurrenciesFactorLoaders\FileCachableCurrenciesFactorsLoader.cs" />
+    <Compile Include="CurrenciesFactorLoaders\YahooCurrenciesFactorsLoader.cs" />
+    <Compile Include="CurrenciesFactorProviders\CurrenciesFactorsPer1UnitInUsd.cs" />
+    <Compile Include="CurrenciesFactorLoaders\ICurrenciesFactorsLoader.cs" />
+    <Compile Include="CurrenciesFactorsUpdateStrategies\CsvFileCurrenciesFactorsUpdateStrategy.cs" />
+    <Compile Include="CurrenciesFactorsUpdateStrategies\CurrencyFactorsLoadedEventArgs.cs" />
+    <Compile Include="CurrenciesFactorsUpdateStrategies\CurrencyFactorsLoadingErrorEventArgs.cs" />
+    <Compile Include="CurrenciesFactorsUpdateStrategies\DefaultCurrenciesFactorsUpdateStrategy.cs" />
+    <Compile Include="CurrenciesFactorsUpdateStrategies\FakeLoadCurrenciesFactorsUpdateStrategy.cs" />
+    <Compile Include="CurrenciesFactorsUpdateStrategies\SingleLoadCurrenciesFactorsUpdateStrategy.cs" />
     <Compile Include="Currency.cs" />
-    <Compile Include="CurrenciesFactorProvider\DefaultCurrenciesFactorProvider.cs" />
-    <Compile Include="CurrenciesFactorProvider\ICurrenciesFactorProvider.cs" />
-    <Compile Include="CurrenciesFactorsUpdateStrategy\ICurrenciesFactorsUpdateStrategy.cs" />
+    <Compile Include="CurrenciesFactorProviders\DefaultCurrenciesFactorProvider.cs" />
+    <Compile Include="CurrenciesFactorProviders\ICurrenciesFactorProvider.cs" />
+    <Compile Include="CurrenciesFactorsUpdateStrategies\ICurrenciesFactorsUpdateStrategy.cs" />
     <Compile Include="CurrencyDescriptors\CurrencyDescriptor.cs" />
     <Compile Include="Extensions\DecimalExtensions.cs" />
     <Compile Include="Money.cs" />
@@ -66,6 +74,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram.cd" />
     <None Include="DLLs\CsvHelper.dll" />
     <None Include="DLLs\CsvHelper.XML" />
   </ItemGroup>

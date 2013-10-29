@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyHandler.Example", "Mon
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyHandler.Tests", "MoneyHandler.Tests\MoneyHandler.Tests.csproj", "{45201525-A4D3-4D84-AD00-9857D1D57C74}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoneyHandler.NET4", "MoneyHandler.NET4\MoneyHandler.NET4.csproj", "{6B1D7B73-031F-4B00-A7A4-C82B2D53CB5B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{45201525-A4D3-4D84-AD00-9857D1D57C74}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45201525-A4D3-4D84-AD00-9857D1D57C74}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45201525-A4D3-4D84-AD00-9857D1D57C74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B1D7B73-031F-4B00-A7A4-C82B2D53CB5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B1D7B73-031F-4B00-A7A4-C82B2D53CB5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B1D7B73-031F-4B00-A7A4-C82B2D53CB5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B1D7B73-031F-4B00-A7A4-C82B2D53CB5B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
