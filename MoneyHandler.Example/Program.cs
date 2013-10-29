@@ -39,13 +39,13 @@ namespace MoneyHandler.Example
 
         private static void PrintData()
         {
-            Console.WriteLine(String.Format("1 EUR in USD  = {0}", 1m.Euros().ToDollars()));
-            Console.WriteLine(String.Format("1 Dolars = {0}", new Money(1, Currency.USD)));
-            Console.WriteLine(String.Format("1 Dolars In Euro = {0}", 1m.Dollars().ToEuros()));
-            Console.WriteLine(String.Format("1 Dolars In Yeans = {0}", 1m.Dollars().ToJapanYens()));
-            Console.WriteLine(String.Format("1 Eur In Yeans = {0}", 1m.Euros().ToJapanYens()));
-            Console.WriteLine(String.Format("2 Dolars + 3 Euro = {0}", (2m.Dollars() + 3m.Euros()).ToString("{0} {4}")));
-            Console.WriteLine(String.Format("1 Dolar in UAH = {0}", 1m.Dollars().ToHryvnas()));
+            Console.WriteLine("1 EUR in USD  = {0}", 1m.Euros().ToDollars());
+            Console.WriteLine("1 Dolars = {0}", new Money(1, Currency.USD));
+            Console.WriteLine("1 Dolars In Euro = {0}", 1m.Dollars().ToEuros());
+            Console.WriteLine("1 Dolars In Yeans = {0}", 1m.Dollars().ToJapaneseYens());
+            Console.WriteLine("1 Eur In Yeans = {0}", 1m.Euros().ToJapaneseYens());
+            Console.WriteLine("2 Dolars + 3 Euro = {0}", (2m.Dollars() + 3m.Euros()).ToString("{0} {4}"));
+            Console.WriteLine("1 Dolar in UAH = {0}", 1m.Dollars().ToHryvnas());
         }
     }
 }
