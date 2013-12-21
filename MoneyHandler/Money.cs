@@ -237,6 +237,16 @@ namespace MoneyHandler
             return ToString(format, System.Threading.Thread.CurrentThread.CurrentCulture);
         }
 
+        public bool Equals(Money other, bool autoConvertCurrencyIfNeed)
+        {
+            if (!autoConvertCurrencyIfNeed)
+                return Equals(other);
+
+            other = CorrectCurrencyIfNeed(Currency, other);
+
+            return Equals(other);
+        }
+
         #endregion
 
         #region Implementation of IComparable
@@ -896,7 +906,7 @@ namespace MoneyHandler
 
             s = s.Trim();
 
-            if (s.Length < 4)
+            if (s.Length < 2)
             {
                 ex = new FormatException("String too short");
                 return false;
@@ -907,30 +917,34 @@ namespace MoneyHandler
 
                 Currency currency;
 
-                if (Char.IsLetter(s[0]))
+                if (!Char.IsDigit(s[0]))
                 {
                     int lastIndex = 1;
 
                     for (; lastIndex < s.Length; ++lastIndex)
                     {
-                        if (!Char.IsLetter(s[lastIndex]))
+                        var c = s[lastIndex];
+                        if (Char.IsDigit(c))
                             break;
                     }
 
-                    currency = (Currency) Enum.Parse(typeof (Currency), s.Substring(0, lastIndex).ToUpper());
+                    var currencyStr = s.Substring(0, lastIndex);
+                    currency = ParseCurrency(currencyStr);
                     s = s.Substring(lastIndex);
                 }
-                else if (Char.IsLetter(s[s.Length - 1]))
+                else if (!Char.IsDigit(s[s.Length - 1]))
                 {
                     int startIndex = 1;
 
                     for (; startIndex >= 0; --startIndex)
                     {
-                        if (!Char.IsLetter(s[startIndex]))
+                        var c = s[startIndex];
+                        if (Char.IsDigit(c))
                             break;
                     }
 
-                    currency = (Currency)Enum.Parse(typeof(Currency), s.Substring(startIndex + 1).ToUpper());
+                    var currencyStr = s.Substring(startIndex + 1);
+                    currency = ParseCurrency(currencyStr);
                     s = s.Substring(0, startIndex + 1);
                 }
                 else
@@ -949,6 +963,27 @@ namespace MoneyHandler
 
             ex = null;
             return true;
+        }
+
+        private static Currency ParseCurrency(string currencyStr)
+        {
+            currencyStr = currencyStr.Trim().ToUpper();
+            try
+            {
+                return (Currency) Enum.Parse(typeof (Currency), currencyStr);
+            }
+            catch (ArgumentException)
+            {
+                foreach (var desc in CurrencyDescriptor.GetDescriptors())
+                {
+                    if (currencyStr.Equals(desc.NativeName, StringComparison.InvariantCultureIgnoreCase)
+                        || currencyStr.Equals(desc.IsoCode, StringComparison.InvariantCultureIgnoreCase)
+                        || currencyStr.Equals(desc.Symbol, StringComparison.InvariantCultureIgnoreCase)
+                        || currencyStr.Equals(desc.EnglishName, StringComparison.InvariantCultureIgnoreCase))
+                        return desc.Currency;
+                }
+                throw;
+            }
         }
 
         #endregion

@@ -545,6 +545,10 @@ namespace MoneyHandler.Tests
             Assert.AreEqual(Money.Parse("EUR 16"), 16m.Euros());
             Assert.AreEqual(Money.Parse("EUR15"), 15m.Euros());
             Assert.AreEqual(Money.Parse("eur 13"), 13m.Euros());
+            Assert.AreEqual(Money.Parse("13$"), 13m.Dollars());
+            Assert.AreEqual(Money.Parse("13  $"), 13m.Dollars());
+            Assert.AreEqual(Money.Parse("$13"), 13m.Dollars());
+            Assert.AreEqual(Money.Parse("$  13"), 13m.Dollars());
         }
 
         /// <summary>

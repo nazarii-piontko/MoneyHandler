@@ -55,9 +55,7 @@ namespace MoneyHandler.CurrencyDescriptors
                                              IsoCode = currency.ToString(),
                                              EnglishName = node.ChildNodes[0].InnerText.Trim(),
                                              NativeName = node.ChildNodes[1].InnerText.Trim(),
-                                             Symbol =
-                                                 String.Concat(from s in SplitNumberSequence(node.ChildNodes[2])
-                                                               select Char.ConvertFromUtf32(Int32.Parse(s))),
+                                             Symbol = String.Concat(SplitNumberSequence(node.ChildNodes[2]).Select(s => Char.ConvertFromUtf32(Int32.Parse(s))).ToArray()),
                                              SignificantDecimalDigits = Int32.Parse(node.ChildNodes[3].InnerText),
                                              DecimalSeparator = GetCharFromString(node.ChildNodes[4].InnerText.Trim()),
                                              GroupSeparator = GetCharFromString(node.ChildNodes[5].InnerText.Trim()),
@@ -97,7 +95,7 @@ namespace MoneyHandler.CurrencyDescriptors
             Interlocked.CompareExchange(ref _descriptors, descriptors, null);
         }
 
-        private static IEnumerable<string> SplitNumberSequence(XmlNode node)
+        private static IEnumerable<String> SplitNumberSequence(XmlNode node)
         {
             return node.InnerText.Trim().Split(new[] {' ', '\t'}, StringSplitOptions.RemoveEmptyEntries);
         }
@@ -107,6 +105,11 @@ namespace MoneyHandler.CurrencyDescriptors
             if (s.Length == 0)
                 return ' ';
             return s[0];
+        }
+
+        public static IEnumerable<CurrencyDescriptor> GetDescriptors()
+        {
+            return Descriptors;
         }
 
         public static CurrencyDescriptor GetDescriptor(Currency currency)
